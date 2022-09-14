@@ -18,6 +18,54 @@ good = 10
 bad = 5
 starting_trivia = True
 attempts = 0
+attempts_score_list = []
+options_list = []
+options_1 = [
+    "a) Hyper text meta language", "b) Hype Talent More Language",
+    "c) HyperText Markup Language", "d) NA"
+]
+options_list.append(options_1)
+options_2 = ["a) Javascript", "b) Golang", "c) PHP", "d) HTML"]
+options_list.append(options_2)
+options_3 = [
+    "a) Trabaja con bases de datos directamente",
+    "b) El lenguaje se ejecuta en el servidor",
+    "c) Utiliza un framework popular llamado REACT.JS", "d) NA"
+]
+options_list.append(options_3)
+options_4 = ["a) 1989", "b) 1988", "c) 1600", "d) 2000"]
+options_list.append(options_4)
+
+
+def showOptions(list):
+    for e in list:
+        print(GREEN + e + RESET)
+
+
+def showScore(score):
+    time.sleep(1)
+    print(YELLOW + "Su score hasta ahora es", score, "\n" + RESET)
+    time.sleep(2)
+
+
+def isCorrect(answer, correct_aswer):
+    if answer != correct_aswer:
+        print(RED + "Incorrecto ", nombre, "la respuesta es ",
+              correct_aswer + RESET)
+        return -bad
+    else:
+        print(BLUE + "Correcto ", nombre, "la respuesta es ",
+              correct_aswer + RESET)
+        return good
+
+
+def showAttemptsScoreList():
+    print("Sus puntajes son: \n")
+    for number in range(0, len(attempts_score_list), +1):
+        time.sleep(1)
+        print("Intento nro: ", number + 1, "=> ", attempts_score_list[number])
+
+
 print(
     CYAN + "Tu puntaje inicial es ", score,
     "\nEl juego comenzara en 5s, veremos con cuanto puntaje terminas.." +
@@ -34,91 +82,46 @@ print(
 while starting_trivia == True:
     attempts += 1
     print("\nIntento número:", attempts)
-    input("Presiona Enter para continuar")
+    input("Presiona Enter para continuar\n")
     # Pregunta 1
-    print("\n", YELLOW + "1) ¿Qué significa HTML?" + RESET)
-    print("a) Hyper text meta language")
-    print("b) Hype Talent More Language")
-    print("c) HyperText Markup Language")
-    print("d) NA")
+    print(YELLOW + "1) ¿Qué significa HTML?" + RESET)
+    showOptions(options_list[0])
     respuesta_1 = input("\nTu respuesta: ")
     while respuesta_1 not in ("a", "b", "c", "d", "x"):
         respuesta_1 = input(
-            "Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: ")
-    if respuesta_1 == "a":
-        print("Incorrecto ", nombre, "la respuesta es c")
-        score -= bad
-    elif respuesta_1 == "b":
-        print("Incorrecto ", nombre, "la respuesta es c")
-        score -= bad
-    elif respuesta_1 == "d":
-        print("Incorrecto ", nombre, "la respuesta es c")
-        score -= bad
-    elif respuesta_1 == "x":
-        print("Rspt secret ", nombre, "la respuesta es genial y secreta")
+            "Debe responder alguna de estas alternativas a,b,c,d, ingresa nuevamente tu respuesta: "
+        )
+    if respuesta_1 == "x":
+        print("Respuesta secret ", nombre, "la respuesta es genial y secreta")
         score += 1200
     else:
-        print("Correcto ", nombre, "la respuesta es c")
-        score += good
-    time.sleep(2)
-    print("Su score hasta ahora es", score, "\n")
+        score += isCorrect(respuesta_1, "c")
+    showScore(score)
 
     # Pregunta 2
     print(YELLOW + "2) ¿Cuál no es un lenguaje de programación?" + RESET)
-    print("a) Javascript")
-    print("b) Golang")
-    print("c) PHP")
-    print("d) HTML")
+    showOptions(options_list[1])
     respuesta_2 = input("\nTu respuesta: ")
     while respuesta_2 not in ("a", "b", "c", "d"):
         respuesta_2 = input(
             "Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: ")
-    if respuesta_2 == "a":
-        print("Incorrecto ", nombre, "la respuesta es d")
-        score -= bad
-    elif respuesta_2 == "b":
-        print("Incorrecto ", nombre, "la respuesta es d")
-        score -= bad
-    elif respuesta_2 == "c":
-        print("Incorrecto ", nombre, "la respuesta es d")
-        score -= bad
-    else:
-        print("Correcto ", nombre, "la respuesta es d")
-        score += good
-    time.sleep(2)
-    print("Su score hasta ahora es", score, "\n")
+    score += isCorrect(respuesta_2, "d")
+    showScore(score)
 
     # Pregunta 3
     print(YELLOW + "3) ¿Cuál es una caracteristica del desarrollo frontend?" +
           RESET)
-    print("a) Trabaja con bases de datos directamente")
-    print("b) El lenguaje se ejecuta en el servidor")
-    print("c) Utiliza un framework popular llamado REACT.JS")
-    print("d) NA")
+    showOptions(options_list[2])
     respuesta_3 = input("\nTu respuesta: ")
     while respuesta_3 not in ("a", "b", "c", "d"):
         respuesta_3 = input(
             "Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: ")
-    if respuesta_3 == "a":
-        print("Incorrecto ", nombre, "la respuesta es c")
-        score -= bad
-    elif respuesta_3 == "b":
-        print("Incorrecto ", nombre, "la respuesta es c")
-        score -= bad
-    elif respuesta_3 == "d":
-        print("Incorrecto ", nombre, "la respuesta es c")
-        score -= bad
-    else:
-        print("Correcto ", nombre, "la respuesta es c")
-        score += good
-    time.sleep(2)
-    print("Su score hasta ahora es", score, "\n")
+    score += isCorrect(respuesta_3, "c")
+    showScore(score)
+
     # Pregunta 4
     print(YELLOW + "4) ¿En que año se creo el lenguaje Python?" + RESET)
-    print("a) 1989")
-    print("b) 1988")
-    print("c) 1600")
-    print("d) 2000")
+    showOptions(options_list[3])
     respuesta_4 = input("\nTu respuesta: ")
     while respuesta_4 not in ("a", "b", "c", "d"):
         respuesta_4 = input(
@@ -133,12 +136,14 @@ while starting_trivia == True:
         print("Malo ", nombre, "la respuesta es a")
         score -= 5
     else:
-        print("Correcto ", nombre, "la respuesta es a")
+        print("Correcto ", nombre, "la respuesta es a\n")
         score = score * 2
     time.sleep(5)
     for x in range(random.randint(1, 5), random.randint(6, 10), +1):
         score = score + x
     print("Su score final es", score, "\n")
+    attempts_score_list.append(score)
+    time.sleep(1)
     print("\n¿Deseas intentar la trivia nuevamente?")
     repetir_trivia = input(
         "Ingresa 'si' para repetir, o cualquier tecla para finalizar: ").lower(
@@ -146,5 +151,11 @@ while starting_trivia == True:
 
     score = 0
     if repetir_trivia != "si":
-        print(f"\nEspero {nombre} que lo hayas pasado bien, hasta pronto!")
+        showAttemptsScoreList()
+        time.sleep(2)
+        print(YELLOW + "La suma de tu puntaje es", sum(attempts_score_list),
+              RESET)
+        time.sleep(1)
+        print(
+            f"\nEsperamos, {nombre}, que lo hayas pasado bien, hasta pronto!")
         starting_trivia = False
